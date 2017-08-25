@@ -48,6 +48,7 @@ set shiftwidth=4
 set softtabstop=4
 set cursorline
 set nowrap
+set showcmd
 
 let mapleader = ","
 let g:mapleader = ","
