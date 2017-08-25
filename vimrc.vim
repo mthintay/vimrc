@@ -33,7 +33,7 @@ let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
 " TIPS
 " - :edit a folder to open a file browser
-" - >CR>/v/t to open in an h-split/v-split/tab
+" - <CR>/v/t to open in an h-split/v-split/tab
 " - check |netrw-browse-maps| for more mappings
 
 " SNIPPETS
