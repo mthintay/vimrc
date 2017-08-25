@@ -41,6 +41,8 @@ nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>3jwf>a
 
 set background=dark		" Assume a dark bg
 set number			" Activate line numbers
+set ignorecase
+set smartcase
 set hlsearch			" Highlight search term
 set incsearch			" Set incremental search
 set tabstop=4
