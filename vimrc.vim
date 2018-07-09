@@ -9,6 +9,9 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
+Plugin 'posva/vim-vue'
+Plugin 'mattn/emmet-vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -89,6 +92,8 @@ set nowrap
 set showcmd
 set showmode
 
+set wildignore+=node_modules/*,wp-admin/*,wp-includes/*
+
 let mapleader = ","
 let g:mapleader = ","
 
@@ -100,3 +105,15 @@ augroup autosourcing
 	autocmd!
 	autocm BufWritePost .vimrc source %	" Auto source file on save
 augroup END
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l -all --ignore /wp-admin --ignore /wp-includes --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
