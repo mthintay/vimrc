@@ -1,20 +1,21 @@
 set nocompatible
+filetype off
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+"set rtp+=~/.vim/bundle/Vundle.vim
+"call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'posva/vim-vue'
-Plugin 'mattn/emmet-vim'
-Plugin 'ctrlpvim/ctrlp.vim'
+"Plugin 'VundleVim/Vundle.vim'
+"Plugin 'vim-airline/vim-airline'
+"Plugin 'posva/vim-vue'
+"Plugin 'mattn/emmet-vim'
+"Plugin 'ctrlpvim/ctrlp.vim'
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
+"call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -28,16 +29,16 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-      let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = "\ua0"
-  let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline_theme='onedark'
+"let g:airline_powerline_fonts = 1
+"if !exists('g:airline_symbols')
+"      let g:airline_symbols = {}
+"endif
+"let g:airline_symbols.space = "\ua0"
+"  let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#show_buffers = 0
+"let g:airline_theme='onedark'
 
-colorscheme onedark
+"colorscheme onedark
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
@@ -78,21 +79,33 @@ command! MakeTags !ctags -R .
 nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>3jwf>a
 
 set background=dark		" Assume a dark bg
-set number			" Activate line numbers
+set number			" Always show line numbers
 set relativenumber
-set ignorecase
-set smartcase
+set ignorecase			" Ignore case when searching
+set smartcase			" Ignore case if search pattern is all lowercase
 set hlsearch			" Highlight search term
 set incsearch			" Set incremental search
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set cursorline
-set nowrap
-set showcmd
-set showmode
-
-set wildignore+=node_modules/*,wp-admin/*,wp-includes/*
+set tabstop=4			" A tab is 4 spaces
+set shiftwidth=4		" Number of spaces to use for autoindenting
+set shiftround			" Use multiple of shiftwidth when indenting with '<' and '>'
+set softtabstop=4		" When hitting <BS>, pretend like a tab is removed, even if spaces
+set smarttab
+set expandtab			" Expand tabs by default
+set copyindent			" Copy the previous indentation on autoindenting
+set nowrap			    " Don't wrap lines
+set showcmd		
+set showmode			" Always show what mode we're currently editing in
+set novisualbell		" Don't beep
+set noerrorbells		" Don't beep
+set autowrite			" Save on buffer switch
+set tags=tags
+set backspace=indent,eol,start	" Allow backspacing over everything in insert mode
+set timeout timeoutlen=200 ttimeoutlen=100
+set wildignore+=*.swp,*.bak,*.pyc,*.class,*.o
+set showmatch			" Show matching brackets
+set backupdir=~/.vim/backups
+set directory=~/.vim/swaps
+set title
 
 let mapleader = ","
 let g:mapleader = ","
