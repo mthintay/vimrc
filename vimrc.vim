@@ -1,132 +1,76 @@
 set nocompatible
-filetype off
-
-" set the runtime path to include Vundle and initialize
-"set rtp+=~/.vim/bundle/Vundle.vim
-"call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-"Plugin 'VundleVim/Vundle.vim'
-"Plugin 'vim-airline/vim-airline'
-"Plugin 'posva/vim-vue'
-"Plugin 'mattn/emmet-vim'
-"Plugin 'ctrlpvim/ctrlp.vim'
-
-" All of your Plugins must be added before the following line
-"call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
-"let g:airline_powerline_fonts = 1
-"if !exists('g:airline_symbols')
-"      let g:airline_symbols = {}
-"endif
-"let g:airline_symbols.space = "\ua0"
-"  let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#show_buffers = 0
-"let g:airline_theme='onedark'
-
-"colorscheme onedark
-
-"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
-"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
-"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-if (empty($TMUX))
-  if (has("nvim"))
-    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-  if (has("termguicolors"))
-    set termguicolors
-  endif
-endif
-
 syntax enable
+filetype plugin indent on
 
-" FILE SEARCH
-set path+=**			" Also search in sub folders
-set wildmenu			" Use tab to auto complete search
+"colorscheme desert
 
-" TIPS
-" - Hit tab to :find partial matches
-" - Use an * to use fuzzy search
-" - :b to autocomplete open buffers
-
-" TAG JUMP
-command! MakeTags !ctags -R .
-
-" TIPS
-" - Use ^] to jump to tag under cursor
-" - Use g^] for ambiguous tags
-" - Use ^t to jump back up the tag stack
-
-" SNIPPETS
-nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>3jwf>a
-
-set background=dark		" Assume a dark bg
-set number			" Always show line numbers
+" General
+set autoindent          " Enable auto indenting
+set background=dark     " Assume a dark bg
+set number              " Always show line numbers
 set relativenumber
-set ignorecase			" Ignore case when searching
-set smartcase			" Ignore case if search pattern is all lowercase
-set hlsearch			" Highlight search term
-set incsearch			" Set incremental search
-set tabstop=4			" A tab is 4 spaces
-set shiftwidth=4		" Number of spaces to use for autoindenting
-set shiftround			" Use multiple of shiftwidth when indenting with '<' and '>'
-set softtabstop=4		" When hitting <BS>, pretend like a tab is removed, even if spaces
+set ignorecase          " Ignore case when searching
+set smartcase           " Ignore case if search pattern is all lowercase
+set hlsearch            " Highlight search term
+set incsearch           " Set incremental search
+set tabstop=4           " A tab is 4 spaces
+set shiftwidth=4        " Number of spaces to use for autoindenting
+set shiftround          " Use multiple of shiftwidth when indenting with '<' and '>'
+set softtabstop=4       " When hitting <BS>, pretend like a tab is removed, even if spaces
 set smarttab
-set expandtab			" Expand tabs by default
-set copyindent			" Copy the previous indentation on autoindenting
-set nowrap			    " Don't wrap lines
-set showcmd		
-set showmode			" Always show what mode we're currently editing in
-set novisualbell		" Don't beep
-set noerrorbells		" Don't beep
-set autowrite			" Save on buffer switch
+set expandtab           " Expand tabs by default
+set copyindent          " Copy the previous indentation on autoindenting
+set nowrap              " Don't wrap lines
+set showcmd
+set showmode            " Always show what mode we're currently editing in
+set novisualbell        " Don't beep
+set noerrorbells        " Don't beep
+set autowrite           " Save on buffer switch
 set tags=tags
-set backspace=indent,eol,start	" Allow backspacing over everything in insert mode
+set backspace=indent,eol,start  " Allow backspacing over everything in insert mode
 set timeout timeoutlen=200 ttimeoutlen=100
 set wildignore+=*.swp,*.bak,*.pyc,*.class,*.o
-set showmatch			" Show matching brackets
+set showmatch           " Show matching brackets
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
 set title
 
+" File search
+set path+=**
+set wildmenu
+
+" Set utf8 as standard encoding and en_US as the standard language
+set encoding=utf8
+
+" Use Unix as the standard file type
+set ffs=unix,dos,mac
+
+" Mappings
 let mapleader = ","
 let g:mapleader = ","
-
-" MAPPINGS
 nmap <Leader><space> :nohlsearch<cr>
 
-" AUTO COMMANDS
+" Treat long lines as break lines
+map j gj
+map k gk
+
+" Remap jj to ESC in insert mode
+inoremap jj <Esc>
+
+" Tweaks for browsing
+let g:netrw_banner=0        " disable annoying banner
+let g:netrw_browse_split=4  " open in prior window
+let g:netrw_altv=1          " open splits to the right
+let g:netrw_liststyle=3     " tree view
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+
+" Edit vimrc with ,ev
+nnoremap <Leader>ev :tabnew<CR>:e ~/.vimrc<CR>
+
+" Auto commands
 augroup autosourcing
 	autocmd!
-	autocm BufWritePost .vimrc source %	" Auto source file on save
+	autocm BufWritePost .vimrc source % " Auto source file on save
 augroup END
 
-" The Silver Searcher
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l -all --ignore /wp-admin --ignore /wp-includes --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
