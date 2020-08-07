@@ -36,6 +36,8 @@ set showmatch           " Show matching brackets
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
 set title
+set cursorline
+set cursorcolumn
 
 " File search
 set path+=**
